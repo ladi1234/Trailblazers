@@ -32,7 +32,7 @@ export default function SituationInput({
       <div className="relative flex w-full flex-col gap-3 rounded-md border bg-white focus-within:bg-white/70 md:max-w-4xl md:bg-white/50">
         <TextareaAutosize
           className="w-full resize-none p-5 text-base outline-none md:bg-transparent"
-          placeholder="Describe the situation"
+          placeholder="Describe the details of Emergency"
           value={situationText}
           autoFocus={true}
           onChange={(e) => updateSituation(e.target.value)}
