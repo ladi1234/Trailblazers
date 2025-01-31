@@ -16,6 +16,8 @@ Command: You will be provided a desciption of an emergency situation. Your goal 
 `;
 
 export const userSituation = (situation: string): string => {
-  const description = `Someone is in an health emergency sitation and you will be given a desciption about the situation. do your best to generate the treatment from the list to figure out possible treatment and situation and return the json output. Description of Situation: ${situation}`;
+  const description = `Ask the situation of the emergency if not already given; then, recommend First Aid if applicable to the situation and generate treatment from the list to figure out the possible treatmeant and  return the json output. Description of Situation: ${situation};`
   return description;
 };
+// const description = `Someone is in an health emergency sitation and you will be given a desciption about the situation. do your best to generate the treatment from the list to figure out possible treatment and situation and return the json output. Description of Situation: ${situation}`;
+// Ask the situation of the emergency; then check if First Aid could help the user; if not, tell the user the nearest hospital that treat the patient Description of Situation: ${situation};

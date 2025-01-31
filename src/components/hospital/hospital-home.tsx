@@ -22,7 +22,21 @@ export default function HospitalHome({}: Props) {
 
   // location
   const [currLocation, setCurrLocation] = useState<any>({});
+  const [locationName, setLocationName] = useState("");
   const { updateMapLocation } = useHospitalStore();
+
+  async function getLocationName(lat, lon) {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`,
+      );
+      const data = await response.json();
+      return data.display_name; // Full address
+    } catch (error) {
+      console.error("Error fetching location name:", error);
+      return "Unknown location";
+    }
+  }
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
@@ -34,6 +48,10 @@ export default function HospitalHome({}: Props) {
       });
       console.log(lat, long);
       updateMapLocation([long, lat]);
+      getLocationName(lat, long).then((location) => {
+        console.log(location);
+        setLocationName(location);
+      });
     });
   }, []);
 
@@ -94,6 +112,7 @@ export default function HospitalHome({}: Props) {
             type="text"
             placeholder="Location Address"
             className="w-full outline-none"
+            defaultValue={locationName}
           />
         </div>
       </div>
